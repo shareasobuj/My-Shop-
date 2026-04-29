@@ -3,80 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S-Shop | Premium E-Commerce</title>
+    <title> My Shop | বাংলাদেশের সেরা অনলাইন শপিং</title>
     
-    <!-- CSS Design -->
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <style>
-        :root { --primary: #27ae60; --dark: #2c3e50; --light: #ecf0f1; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; background: #f4f7f6; }
-        header { background: var(--dark); color: white; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+        :root { --daraz-orange: #f57224; --bg-gray: #eff0f5; --footer-dark: #2e2e2e; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
+        body { background-color: var(--bg-gray); }
+
+        /* Top Navbar */
+        nav { background: white; padding: 10px 5%; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .logo { font-size: 28px; font-weight: bold; color: var(--daraz-orange); cursor: pointer; text-decoration: none; }
         
-        .container { width: 90%; max-width: 1200px; margin: 20px auto; }
-        
-        /* Admin Panel */
-        .admin-panel { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 30px; }
-        .admin-panel input, .admin-panel select { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; }
-        .btn-add { background: var(--primary); color: white; border: none; padding: 10px 20px; cursor: pointer; width: 100%; font-size: 16px; border-radius: 5px; }
+        .search-box { flex: 1; margin: 0 30px; display: flex; }
+        .search-box input { width: 100%; padding: 12px; border: none; background: #f5f5f5; border-radius: 4px 0 0 4px; outline: none; }
+        .search-box button { padding: 0 20px; border: none; background: var(--daraz-orange); color: white; cursor: pointer; border-radius: 0 4px 4px 0; }
+
+        .nav-icons { display: flex; gap: 20px; align-items: center; }
+        .cart-icon { position: relative; font-size: 22px; color: var(--dark); cursor: pointer; }
+        .cart-count { position: absolute; top: -10px; right: -10px; background: var(--daraz-orange); color: white; font-size: 12px; padding: 2px 6px; border-radius: 50%; }
+
+        /* Admin/Post Section */
+        .admin-section { background: white; width: 90%; max-width: 1200px; margin: 20px auto; padding: 20px; border-radius: 8px; }
+        .admin-section h3 { margin-bottom: 15px; color: var(--dark); border-left: 5px solid var(--daraz-orange); padding-left: 10px; }
+        .input-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+        input, select { padding: 10px; border: 1px solid #ddd; border-radius: 4px; outline: none; }
+        .btn-post { background: var(--daraz-orange); color: white; border: none; padding: 10px 25px; border-radius: 4px; cursor: pointer; font-weight: bold; margin-top: 10px; transition: 0.3s; }
+        .btn-post:hover { background: #d45d1a; }
 
         /* Product Grid */
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-        .card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.05); transition: 0.3s; }
-        .card:hover { transform: translateY(-5px); }
-        .media-container { height: 200px; background: #eee; display: flex; align-items: center; justify-content: center; }
-        .media-container img, .media-container video { max-width: 100%; max-height: 100%; object-fit: cover; }
-        .info { padding: 15px; }
-        .price { color: var(--primary); font-weight: bold; font-size: 1.2rem; }
-        .btn-buy { background: #e67e22; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 10px; }
+        .container { width: 90%; max-width: 1200px; margin: 20px auto; }
+        .section-title { font-size: 22px; margin-bottom: 15px; color: #424242; font-weight: 400; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 15px; }
 
-        /* Cart Notification */
-        #cart-btn { background: var(--primary); color: white; padding: 8px 15px; border-radius: 20px; cursor: pointer; }
+        /* Product Card */
+        .card { background: white; transition: 0.3s; cursor: pointer; border-radius: 2px; overflow: hidden; }
+        .card:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.15); }
+        .card-img { width: 100%; height: 180px; object-fit: cover; }
+        .card-video { width: 100%; height: 180px; background: black; }
+        .card-info { padding: 10px; }
+        .p-title { font-size: 14px; color: #212121; height: 36px; overflow: hidden; margin-bottom: 8px; line-height: 1.3; }
+        .p-price { font-size: 18px; color: var(--daraz-orange); font-weight: bold; }
+        .p-old-price { font-size: 12px; color: #9e9e9e; text-decoration: line-through; margin-left: 5px; }
+
+        /* Cart Sidebar */
+        .cart-sidebar { position: fixed; right: -350px; top: 0; width: 300px; height: 100%; background: white; box-shadow: -5px 0 15px rgba(0,0,0,0.1); transition: 0.4s; z-index: 2000; padding: 20px; }
+        .cart-sidebar.active { right: 0; }
+        .close-cart { font-size: 24px; cursor: pointer; color: var(--daraz-orange); }
+
+        /* Footer Simulation */
+        footer { background: white; padding: 40px 5%; margin-top: 50px; border-top: 1px solid #ddd; display: flex; justify-content: space-between; flex-wrap: wrap; }
+        .footer-col h4 { color: var(--daraz-orange); margin-bottom: 15px; }
+        .footer-col p { font-size: 13px; color: #757575; line-height: 2; }
     </style>
 </head>
 <body>
 
-<header>
-    <h2>My Shop</h2>
-    <div id="cart-btn">🛒 কার্ট: <span id="count">0</span></div>
-</header>
+<!-- Navbar -->
+<nav>
+    <a href="#" class="logo">My Shop</a>
+    <div class="search-box">
+        <input type="text" placeholder="Search in Daraz...">
+        <button><i class="fas fa-search"></i></button>
+    </div>
+    <div class="nav-icons">
+        <i class="fas fa-user"></i>
+        <div class="cart-icon" onclick="toggleCart()">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count" id="count">0</span>
+        </div>
+    </div>
+</nav>
 
 <div class="container">
-    <!-- Admin Section -->
-    <div class="admin-panel">
-        <h3>📢 নতুন প্রোডাক্ট যোগ করুন (অ্যাডমিন)</h3>
-        <input type="text" id="pName" placeholder="প্রোডাক্টের নাম (যেমন: স্মার্ট ওয়াচ)">
-        <input type="number" id="pPrice" placeholder="দাম (টাকায়)">
-        <input type="text" id="pMedia" placeholder="ছবি বা ভিডিওর সরাসরি লিংক">
-        <select id="pType">
-            <option value="image">ছবি (Image)</option>
-            <option value="video">ভিডিও (Video)</option>
-        </select>
-        <button class="btn-add" onclick="saveProduct()">পাবলিশ করুন</button>
+    <!-- Admin/Seller Section -->
+    <div class="admin-section">
+        <h3><i class="fas fa-plus-circle"></i> প্রোডাক্ট অ্যাড করুন (অ্যাডমিন প্যানেল)</h3>
+        <div class="input-group">
+            <input type="text" id="pName" placeholder="প্রোডাক্টের নাম লিখুন">
+            <input type="number" id="pPrice" placeholder="মূল্য (৳)">
+            <input type="text" id="pMedia" placeholder="ইমেজ বা ভিডিও লিংক">
+            <select id="pType">
+                <option value="image">ইমেজ (Image)</option>
+                <option value="video">ভিডিও (Video)</option>
+            </select>
+        </div>
+        <button class="btn-post" onclick="uploadToStore()">পাবলিশ করুন</button>
     </div>
 
-    <hr>
-    <h3>🛍️ আমাদের পণ্যসমূহ</h3>
-    <div id="product-list" class="grid">
-        <!-- প্রোডাক্ট এখানে দেখা যাবে -->
+    <!-- Main Market -->
+    <h3 class="section-title">Just For You</h3>
+    <div class="product-grid" id="market">
+        <!-- Products will appear here -->
     </div>
 </div>
 
-<!-- Firebase SDK -->
+<!-- Cart Sidebar -->
+<div class="cart-sidebar" id="cartSide">
+    <span class="close-cart" onclick="toggleCart()">×</span>
+    <h2>আপনার কার্ট</h2>
+    <hr>
+    <div id="cartItems" style="margin-top: 20px;"></div>
+    <button class="btn-post" style="width: 100%; margin-top: 20px;">চেকআউট করুন</button>
+</div>
+
+<footer>
+    <div class="footer-col">
+        <h4>Customer Care</h4>
+        <p>Help Center<br>How to Buy<br>Returns & Refunds</p>
+    </div>
+    <div class="footer-col">
+        <h4>My Shop Bangladesh</h4>
+        <p>About Us<br>Digital Payments<br>S-Daraz Cares</p>
+    </div>
+    <div class="footer-col">
+        <h4>Contact Us</h4>
+        <p>Email: support@sdaraz.com<br>Phone: 01700-000000</p>
+    </div>
+</footer>
+
+<!-- Firebase & Logic -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
-    // আপনার Firebase Config এখানে দিন (Firebase Console থেকে পাবেন)
-    // আপাতত আমি একটি ডেমো ডাটাবেস সেট করে দিচ্ছি যা কাজ করবে
-    const firebaseConfig = {
-        databaseURL: "https://shop-project-demo-default-rtdb.firebaseio.com/" 
-    };
-
+    // Demo Firebase Config
+    const firebaseConfig = { databaseURL: "https://shop-project-demo-default-rtdb.firebaseio.com/" };
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
-    const productsRef = ref(db, 'products');
+    const productsRef = ref(db, 'daraz_products');
 
-    // প্রোডাক্ট সেভ করা
-    window.saveProduct = function() {
+    // আপলোড ফাংশন
+    window.uploadToStore = function() {
         const name = document.getElementById('pName').value;
         const price = document.getElementById('pPrice').value;
         const media = document.getElementById('pMedia').value;
@@ -84,46 +145,45 @@
 
         if(name && price && media) {
             push(productsRef, { name, price, media, type });
-            alert("সফলভাবে পাবলিশ হয়েছে!");
-            document.getElementById('pName').value = '';
-            document.getElementById('pPrice').value = '';
-            document.getElementById('pMedia').value = '';
+            alert("সফলভাবে দারাজে পাবলিশ হয়েছে!");
+            location.reload();
         } else {
-            alert("সবগুলো ঘর পূরণ করুন!");
+            alert("দয়া করে সব তথ্য দিন!");
         }
     }
 
-    // প্রোডাক্ট লিস্ট রিয়েল-টাইম আপডেট
+    // প্রোডাক্ট ডিসপ্লে
     onValue(productsRef, (snapshot) => {
         const data = snapshot.val();
-        const list = document.getElementById('product-list');
-        list.innerHTML = '';
-        
+        const market = document.getElementById('market');
+        market.innerHTML = '';
         for (let id in data) {
             const p = data[id];
-            list.innerHTML += `
-                <div class="card">
-                    <div class="media-container">
-                        ${p.type === 'image' ? `<img src="${p.media}">` : `<video src="${p.media}" controls></video>`}
-                    </div>
-                    <div class="info">
-                        <h4>${p.name}</h4>
-                        <p class="price">৳ ${p.price}</p>
-                        <button class="btn-buy" onclick="addToCart('${p.name}', ${p.price})">অর্ডার করুন</button>
+            market.innerHTML += `
+                <div class="card" onclick="addToCart('${p.name}', ${p.price})">
+                    ${p.type === 'image' ? `<img src="${p.media}" class="card-img">` : `<video src="${p.media}" class="card-video" muted autoplay loop></video>`}
+                    <div class="card-info">
+                        <p class="p-title">${p.name}</p>
+                        <p class="p-price">৳ ${p.price}</p>
+                        <p class="p-old-price">৳ ${parseInt(p.price) + 200}</p>
                     </div>
                 </div>
             `;
         }
     });
 
-    // কার্ট লজিক
-    let cartCount = 0;
-    window.addToCart = function(name, price) {
-        cartCount++;
-        document.getElementById('count').innerText = cartCount;
-        alert(name + " কার্টে যোগ হয়েছে। পেমেন্ট সম্পন্ন করতে আমাদের ইনবক্স করুন!");
-    }
+    // কার্ট কন্ট্রোল
+    let cart = [];
+    window.toggleCart = () => document.getElementById('cartSide').classList.toggle('active');
+    
+    window.addToCart = (name, price) => {
+        cart.push({name, price});
+        document.getElementById('count').innerText = cart.length;
+        const itemsDiv = document.getElementById('cartItems');
+        itemsDiv.innerHTML += `<p>✅ ${name} - ৳${price}</p>`;
+        alert(name + " কার্টে যোগ হয়েছে!");
+    };
 </script>
 
 </body>
-  </html>
+</html>
